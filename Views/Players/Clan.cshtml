@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+@{
+    var clan = Context.Session.GetString("Clan");
+    var thisClan = PlayersModel.GetClan(clan);
+}
+
+@{
+    ViewData["Title"] = clan;
+}
+
+
+    <div>
+        <h1>@clan</h1>
+
+
+        @if (clan != "Одиночки/домашние")
+        {
+            <h2>Предводитель</h2>
+            thisClan.TryGetValue("Предводитель", out var list);
+            @if (list != null) foreach (var u in list)
+                {
+                    <p style="text-align: center">@Html.ActionLink(u._currentName, "GetUser", "Players", new { userName = u._currentName }, new { @class = "Link" }) </p>
+                }
+            <h2>Глашатай</h2>
+            thisClan.TryGetValue("Глашатай", out var list2);
+            @if (list2 != null) foreach (var u in list2)
+                {
+                    <p style="text-align: center">@Html.ActionLink(u._currentName, "GetUser", "Players", new { userName = u._currentName }, new { @class = "Link" }) </p>
+                }
+            <h2>Целитель(и)</h2>
+            thisClan.TryGetValue("Целитель", out var list3);
+            @if (list3 != null) foreach (var u in list3)
+                {
+                    <p style="text-align: center">@Html.ActionLink(u._currentName, "GetUser", "Players", new { userName = u._currentName }, new { @class = "Link" }) </p>
+                }
+            <h2>Ученик(и) целителя</h2>
+            thisClan.TryGetValue("Ученик целителя", out var list4);
+            @if (list4 != null) foreach (var u in list4)
+                {
+                    <p style="text-align: center">@Html.ActionLink(u._currentName, "GetUser", "Players", new { userName = u._currentName }, new { @class = "Link" }) </p>
+                }
+            <h2>Воители</h2>
+            thisClan.TryGetValue("Воин", out var list5);
+            @if (list5 != null) foreach (var u in list5)
+                {
+                    <p style="text-align: center">@Html.ActionLink(u._currentName, "GetUser", "Players", new { userName = u._currentName }, new { @class = "Link" }) </p>
+                }
+            <h2>Оруженосцы</h2>
+            thisClan.TryGetValue("Оруженосец", out var list6);
+            @if (list6 != null) foreach (var u in list6)
+                {
+                    <p style="text-align: center">@Html.ActionLink(u._currentName, "GetUser", "Players", new { userName = u._currentName }, new { @class = "Link" }) </p>
+                }
+            <h2>Старейшины</h2>
+            thisClan.TryGetValue("Старейшина", out var list7);
+            @if (list7 != null) foreach (var u in list7)
+                {
+                    <p style="text-align: center">@Html.ActionLink(u._currentName, "GetUser", "Players", new { userName = u._currentName }, new { @class = "Link" }) </p>
+                }
+            <h2>Котята</h2>
+            thisClan.TryGetValue("Котёнок", out var list8);
+            @if (list8 != null) foreach (var u in list8)
+                {
+                    <p style="text-align: center">@Html.ActionLink(u._currentName, "GetUser", "Players", new { userName = u._currentName }, new { @class = "Link" }) </p>
+                }
+        }
+        else
+        {
+            <h2>Одиночки</h2>
+            thisClan.TryGetValue("Одиночка", out var list);
+            @if (list != null) foreach (var u in list)
+                {
+                    <p style="text-align: center">@Html.ActionLink(u._currentName, "GetUser", "Players", new { userName = u._currentName }, new { @class = "Link" }) </p>
+                }
+            <h2>Домашние</h2>
+            thisClan.TryGetValue("Домашний", out var list2);
+            @if (list2 != null) foreach (var u in list2)
+                {
+                    <p style="text-align: center">@Html.ActionLink(u._currentName, "GetUser", "Players", new { userName = u._currentName }, new { @class = "Link" }) </p>
+                }
+        }
+    </div>

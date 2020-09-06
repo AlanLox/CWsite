@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Регистрация";
+}
+
+
+    <div>
+        <h1>Регистрация</h1>
+        <br />
+        @if (ViewBag.Error != null)
+        {
+            <p style="color: red;">@ViewBag.Error</p>
+        }
+        <form method="post" action="../Home/Registration" style="margin: 0 25%;">
+            Имя котёнка: <input type="text" name="kittenName" /><br /><br />
+            Имя оруженосца: <input type="text" name="squireName" /><br /><br />
+            Имя воина/целителя: <input type="text" name="warriorName" /><br /><br />
+            Имя предводителя: <input type="text" name="leaderName" /><br /><br />
+            Возраст: <input type="number" name="age" /> лун<br /><br />
+            Пол: <select name="gender">
+                <option value="Кот">Кот</option>
+                <option value="Кошка">Кошка</option>
+                <option value="Таинственный странник">Таинственный странник</option>
+            </select>
+            <br /><br />
+            Племя: <select name="clan">
+                <option value="Грозовое племя">Грозовое племя</option>
+                <option value="Речное племя">Речное племя</option>
+                <option value="Племя ветра">Племя ветра</option>
+                <option value="Племя теней">Племя теней</option>
+                <option value="Одиночка">Одиночка</option>
+                <option value="Домашний">Домашний</option>
+            </select>
+            <br /><br />
+            Должность: <select name="rank">
+                <option value="Котёнок">Котёнок</option>
+                <option value="Оруженосец">Оруженосец</option>
+                <option value="Воин">Воин</option>
+                <option value="Целитель">Целитель</option>
+                <option value="Ученик целителя">Ученик целителя</option>
+                <option value="Старейшина">Старейшина</option>
+            </select>
+            <br />
+            <br />
+            Описание: <br /><textarea type="text" name="description" style="width: 400px; height: 100px;"></textarea>
+            <br /><br />
+            Логин: <input type="text" name="login" /><br /><br />
+            Пароль: <input type="password" name="password" /><br /><br />
+            Повторите пароль: <input type="password" name="password2" /><br /><br />
+            <input type="reset" value="Очистить" />
+            <input type="submit" value="Зарегестрироваться" />
+
+            <br /><br />
+        </form>
+    </div>

@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Территория племени Теней";
+}
+
+
+    <div>
+        <h1>Территория племени Теней</h1>
+        <div style="margin: 0 10%;">
+            <img src="../images/Теней.jpg" style="width: 100%">
+        </div>
+        <p>
+            На территории племени Теней в обилии растут сосны, закрывающие своими иголками небо и солнце, ели и другие хвойные деревья.
+            Почва здесь илистая, влажная, могут встречаться мхи.
+            На территории племени Теней почти нет травы, поэтому коты этого племени должны быть ловкими, чтобы охотиться под соснами прямо на голой земле.
+            Из-за высоких сосен здесь всегда темно и царит прохлада, между стройными стволами деревьев - полумрак.
+        </p>
+        <p style="color: black; text-align: center;"><b>Соседние локации:</b></p>
+        <ul class="List" style="margin: 0 150px">
+            <li class="menuLi"><a class="Link" href="../Locations/ThunderClan" style="padding: 5px;">Территория грозового племени</a></li>
+            <li class="menuLi"><a class="Link" href="../Locations/FourTrees" style="padding: 5px;">Четыре дерева</a></li>
+            <li class="menuLi"><a class="Link" href="../Locations/WindClan" style="padding: 5px;">Территория племени ветра</a></li>
+            <li class="menuLi"><a class="Link" href="../Locations/Loners" style="padding: 5px;">Нейтральная территория</a></li>
+        </ul>
+        <br />
+
+        @if (Context.Session.Keys.Contains("author"))
+        {
+            <form action="../Locations/Message?loc=4" method="post" style="margin: 0 7%;">
+                <br />
+                Ваш пост: <br /><textarea type="text" name="message" style="width: 700px; height: 100px;"></textarea>
+                <br />
+                <input type="submit" value="Отправить" />
+            </form>
+        }
+        else
+        { <p>Для участия в ролевой войдите или зарегестрируйтесь.</p>}
+
+    </div>
+
+
+@foreach (var p in CWsite.Models.PostModel.GetPosts("ShadowClan"))
+{
+    <br />
+    <div style="background-position: center; background-color: #fff0e5; ">
+        <span style="font: bold">@p.Author</span>
+        <br />
+        <span>@p.Time</span>
+        <p>@p.Message</p>
+    </div>
+}

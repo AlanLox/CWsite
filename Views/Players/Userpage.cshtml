@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+@{
+    var userName = Context.Session.GetString("user");
+    var user = PlayersModel.GetUser(userName);
+    var login = Context.Session.GetString("author");
+}
+
+
+@{
+    ViewData["Title"] = userName;
+}
+
+<div>
+    <h1>Профиль</h1>
+    <br />
+    <span>Имя: @user._currentName</span> <br /><br />
+    <span>Возраст: @user._age лун</span><br /><br />
+    <span>Пол: @user._gender</span><br /><br />
+    <span>Племя: @user._clan </span><br /><br />
+    @if (user._rank != "Одиночка" && user._rank != "Домашний")
+    {
+        <span>Должность: @user._rank </span><br /><br />
+    }
+    <p>Описание: @user._description </p>
+
+
+    @if (login == "admin")
+    {
+        <a class="Link" href="~/Home/Editing">Редактировать профиль</a>
+    }
+
+</div>

@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Нейтральная территория";
+}
+
+
+    <div>
+        <h1>Нейтральная территория</h1>
+        <div style="margin: 0 10%;">
+            <img src="../images/Нейтральная.jpeg" style="width: 100%">
+        </div>
+        <p>Территория, граничащая с людскими поселениями. Здесь обитают одиночки, а так же домашние коты.</p>
+        <p style="color: black; text-align: center;"><b>Соседние локации:</b></p>
+        <ul class="List" style="margin: 0 150px">
+            <li class="menuLi"><a class="Link" href="../Locations/ThunderClan" style="padding: 5px;">Территория грозового племени</a></li>
+            <li class="menuLi"><a class="Link" href="../Locations/RiverClan" style="padding: 5px;">Территория речного племени</a></li>
+            <li class="menuLi"><a class="Link" href="../Locations/WindClan" style="padding: 5px;">Территория племени ветра</a></li>
+            <li class="menuLi"><a class="Link" href="../Locations/ShadowClan" style="padding: 5px;">Территория племени теней</a></li>
+        </ul>
+        <br />
+
+        @if (Context.Session.Keys.Contains("author"))
+        {
+            <form action="../Locations/Message?loc=6" method="post" style="margin: 0 7%;">
+                <br />
+                Ваш пост: <br /><textarea type="text" name="message" style="width: 700px; height: 100px;"></textarea>
+                <br />
+                <input type="submit" value="Отправить" />
+            </form>
+        }
+        else
+        { <p>Для участия в ролевой войдите или зарегестрируйтесь.</p>}
+
+    </div>
+
+
+@foreach (var p in CWsite.Models.PostModel.GetPosts("Loners"))
+{
+    <br />
+    <div style="background-position: center; background-color: #fff0e5; ">
+        <span style="font: bold">@p.Author</span>
+        <br />
+        <span>@p.Time</span>
+        <p>@p.Message</p>
+    </div>
+}

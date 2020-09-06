@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <!--<title>Коты Воители. Ролевая игра</title>-->
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+</head>
+
+
+
+
+<body>
+    <figure>
+        <img src="../images/shapka.jpg" style="width: 100%;" />
+    </figure>
+
+    <nav>
+        <ul class="menu">
+            <li class="menuLi"><a class="menuA" href="~/Home/Index">Главная</a></li>
+            <li class="menuLi"><a class="menuA" href="~/Home/Rules">Правила</a></li>
+            <li class="menuLi"><a class="menuA" href="~/Home/ListOfPlayers">Список игроков</a></li>
+            <li class="menuLi"><a class="menuA" href="~/Home/RolePlay">Ролевая</a></li>
+            <li class="menuLi"><a class="menuA" href="~/Locations/Questions">Вопросы</a></li>
+
+
+            @if (Context.Session.Keys.Contains("author"))
+            {
+                <li class="menuLi" style="float: right;"><a class="menuA" href="~/Players/Profile">Профиль</a></li>
+            }
+
+            else
+            {
+                <li class="menuLi" style="float: right;"><a class="menuA" href="~/Home/SignIn">Вход</a></li>
+                <li class="menuLi" style="float: right;"><a class="menuA" href="~/Home/Registration">Регистрация</a></li>
+            }
+
+
+        </ul>
+    </nav>
+
+    <aside class="leftAside" style="width: 17%;">
+        <img src="../images/bok1.jpg" style="width: 100%;" />
+        <br />
+        <img src="../images/bok2.jpg" style="width: 100%;" />
+        <br />
+        <img src="../images/bok3.jpg" style="width: 100%;" />
+        <br />
+        <img src="../images/bok4.jpg" style="width: 100%;" />
+    </aside>
+
+
+    <aside class="rightAside" style="width: 17%;">
+        <img src="../images/bok5.jpg" style="width: 100%;" />
+        <br />
+        <img src="../images/bok6.jpg" style="width: 100%;" />
+        <br />
+        <img src="../images/bok7.jpg" style="width: 100%;" />
+        <br />
+        <img src="../images/bok8.jpg" style="width: 100%;" />
+    </aside>
+
+    @RenderBody()
+</body>
+
+</html>

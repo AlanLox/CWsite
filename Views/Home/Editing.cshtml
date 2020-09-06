@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+@{
+    var userName = Context.Session.GetString("user");
+    var user = PlayersModel.GetUser(userName);
+
+    var login = Context.Session.GetString("author");
+}
+
+
+@{
+    ViewData["Title"] = "Редактирование";
+}
+
+
+<div>
+    <h1>Редактирование</h1>
+    <br />
+    @if (ViewBag.Error != null)
+    {
+        <p style="color: red;">@ViewBag.Error</p>
+    }
+    <form method="post" action="../Home/Edit" style="margin: 0 25%;">
+        <select name="login" style="visibility: hidden;">
+            <option value="@user._login"></option>
+        </select>
+        <br />
+        Имя: <select name="currentName">
+            <option value="@user._kittenName">@user._kittenName</option>
+            <option value="@user._squireName">@user._squireName</option>
+            <option value="@user._warriorName">@user._warriorName</option>
+            @if (login == "admin")
+            {
+                <option value="@user._leaderName">@user._leaderName</option>
+            }
+        </select>
+        <br /><br />
+        Возраст: <input type="number" name="age" /> лун<br /><br />
+        Племя: <select name="clan">
+            <option value="Грозовое племя">Грозовое племя</option>
+            <option value="Речное племя">Речное племя</option>
+            <option value="Племя ветра">Племя ветра</option>
+            <option value="Племя теней">Племя теней</option>
+            <option value="Одиночка">Одиночка</option>
+            <option value="Домашний">Домашний</option>
+            <option value="Звёздное племя">Звёздное племя</option>
+        </select>
+        <br /><br />
+        Должность: <select name="rank">
+            <option value="Котёнок">Котёнок</option>
+            <option value="Оруженосец">Оруженосец</option>
+            <option value="Воин">Воин</option>
+            <option value="Целитель">Целитель</option>
+            <option value="Ученик целителя">Ученик целителя</option>
+            <option value="Старейшина">Старейшина</option>
+            @if (login == "admin")
+            {
+                <option value="Глашатай">Глашатай</option>
+                <option value="Предводитель">Предводитель</option>
+            }
+        </select>
+        <br />
+        <br />
+        Описание: <br /><textarea type="text" name="description" style="width: 400px; height: 100px;"></textarea>
+        <br /><br />
+        Новый пароль: <input type="password" name="password" /><br /><br />
+        Повторите пароль: <input type="password" name="password2" /><br /><br />
+        <input type="reset" value="Очистить" />
+        <input type="submit" value="Сохранить изменения" />
+        <br /><br />
+
+    </form>
+</div>

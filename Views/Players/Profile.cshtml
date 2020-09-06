@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "Профиль";
+}
+
+@{
+
+    var log = Context.Session.GetString("author");
+    RegistrationModel.Users.TryGetValue(log, out var user);
+}
+
+<div>
+    <h1>Профиль</h1>
+    <br />
+    <span>Имя: @user._currentName</span> <br /><br />
+    <span>Возраст: @user._age лун</span><br /><br />
+    <span>Пол: @user._gender</span><br /><br />
+    <span>Племя: @user._clan </span><br /><br />
+    @if (user._rank != "Одиночка" && user._rank != "Домашний")
+    {
+    <span>Должность: @user._rank </span><br /><br />
+    }
+    <p>Описание: @user._description </p>
+
+    <form style="margin: 0 25%;">
+        <a class="Link" href="~/Home/Editing">Редактировать профиль</a>
+        <br /><br />
+        <a class="Link" href="~/Home/SignOut">Выйти</a>
+        <br /><br />
+    </form>
+</div>

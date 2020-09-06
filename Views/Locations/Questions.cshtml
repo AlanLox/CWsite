@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Вопросы";
+}
+
+
+    <div>
+        <h1>Вопросы</h1>
+        <p style="font-size: 16pt;">
+            Это служебный раздел для связи с администрацией сайта (хотя вы конечно просто по дискорду можете сказать лол).
+            Здесь вы можете написать запрос на то, чтобы стать предводителем/глашатаем (в идеале и другие штуки должны контролироваться админом,
+            но у меня не было времени, сорян ¯\_(ツ)_/¯) </p >
+
+        <br />
+        @if (Context.Session.Keys.Contains("author"))
+        {
+            <form action="../Locations/Message?loc=0" method="post" style="margin: 0 7%;">
+                <br />
+                Ваш пост: <br /><textarea type="text" name="message" style="width: 700px; height: 100px;"></textarea>
+                <br />
+                <input type="submit" value="Отправить" />
+            </form>
+        }
+        else
+        { <p>Для того, чтобы написать вопрос, войдите или зарегестрируйтесь.</p>}
+
+    </div>
+
+
+@foreach (var p in CWsite.Models.PostModel.GetPosts("Questions"))
+{
+    <br />
+    <div style="background-position: center; background-color: #fff0e5; ">
+        <span style="font: bold">@p.Author</span>
+        <br />
+        <span>@p.Time</span>
+        <p>@p.Message</p>
+    </div>
+}
